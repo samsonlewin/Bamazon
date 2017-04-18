@@ -36,7 +36,7 @@ inquirer.prompt({
         break;
 
       case "Add New Product":
-        console.log("there will be function D");
+        AddNewProduct();
         break;
     };
 });
@@ -92,7 +92,43 @@ function addToInventory(){
 };
 
 function AddNewProduct(){
-	
+	inquirer.prompt({
+		type:"input",
+		name:"productName",
+		message: "Name of the product you would like to add"
+	}).then(function(answer){
+		var productName = answer.productName;
+		inquirer.prompt({
+			type:"input",
+			name:"departmentName",
+			message: "name of the department the product belongs to?"
+		}).then(function(answer){
+			var departmentName = answer.departmentName;
+			inquirer.prompt({
+			type:"input",
+			name:"price",
+			message: "price of this product?"
+		}).then(function(answer){
+			var price = answer.price;
+			inquirer.prompt({
+			type:"input",
+			name:"stock",
+			message: "How many of this products is there in stock?"
+		}).then(function(answer){
+			var stock = answer.stock;
+				connection.query("INSERT INTO products SET ?", {
+  				product_name: productName,
+  				department_name: departmentName,
+  				price: price,
+  				stock_quantity:stock
+				}, function(err, res) {
+					console.log("Your product "+ productName + " was successfully added!");
+				});
+		});
+		});
+		});
+	});
+
 };
 
 
