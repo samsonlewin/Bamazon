@@ -57,9 +57,13 @@ function buyProduct (){
 						}, {
   						item_id: theItem
 						}],function(err,res){});
-
-						console.log("The total cost of your pruchase will be $"+answer.units*res[0].price +". Thanks for buying at Bamazon!");
-  
+						var purchase = answer.units*res[0].price;
+						console.log("The total cost of your purchase will be $"+purchase+". Thanks for buying at Bamazon!");
+						connection.query("UPDATE products SET ? WHERE ?", [
+							{product_sales : res[0].product_sales+purchase},
+							{item_id: theItem
+						}],function(err,res){});
+  					exit();
 					};
 
 				});
@@ -68,4 +72,31 @@ function buyProduct (){
 		});
 	});
 };
+
+departmentAdd();
+
+function departmentAdd(){
+
+connection.query('SELECT SUM(product_sales), department_name FROM products GROUP BY department_name', function(err,res){
+	
+	for (var i=0; i<res.length;i++){
+	var depName = res[i].department_name;
+	var totSales = res[i]['SUM(product_sales)'];
+	var cost = Math.random()*totSales;
+	var post = {department_name: depName, total_sales: totSales, over_head_costs: cost };
+
+	connection.query("INSERT INTO departments SET ? WHERE ?",[post,{department_id:i}], function(err,res){
+
+	});
+	};
+});	
+
+
+};
+
+function exit() {
+	connection.end();
+	console.log("Thanks for buying at Bamazon!");
+}
+
 

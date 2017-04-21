@@ -52,6 +52,7 @@ function viewProduct(){
 		console.log("id: " + res[i].item_id + ", name: "+ res[i].product_name + ", price: "+ res[i].price + ", quantity: "+res[i].stock_quantity);
 	};
 });
+
 };
 
 //list all items with a inventory count lower than five.
@@ -61,6 +62,7 @@ function viewLowInventory(){
 		console.log("id: " + res[i].item_id + ", name: "+ res[i].product_name + ", price: "+ res[i].price + ", quantity: "+res[i].stock_quantity);
 		};
 	});
+
 };
 
 //"add more" of any item currently in the store.
@@ -89,6 +91,7 @@ function addToInventory(){
 
 		});
 	});
+
 };
 
 function AddNewProduct(){
@@ -130,7 +133,6 @@ function AddNewProduct(){
 	});
 
 };
-
 
 
 

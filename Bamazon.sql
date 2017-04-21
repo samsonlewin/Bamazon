@@ -11,6 +11,13 @@ stock_quantity INTEGER(30),
 PRIMARY KEY (item_id)
 );
 
+CREATE TABLE departments (
+department_id INT AUTO_INCREMENT NOT NULL,
+department_name VARCHAR(50) NOT NULL,
+over_head_costs DECIMAL(19,4)NOT NULL,
+total_sales DECIMAL(19,4) NOT NULL,
+PRIMARY KEY (department_id)
+);
 
 INSERT INTO products (product_name,department_name,price,stock_quantity )
 VALUES ("Milk Cholocate", "Groceries", 4.5, 5000);
@@ -42,5 +49,11 @@ VALUES ("Cooking Book", "Kitchen",20.29, 35);
 INSERT INTO products (product_name,department_name,price,stock_quantity )
 VALUES ("Rice Cooker", "Kitchen",53.66, 3);
 
+ALTER TABLE products
+ADD product_sales DECIMAL(19,4) NOT NULL;
+
 SELECT * FROM products;
+SELECT * FROM departments;
+
+DELETE FROM departments; 
 
