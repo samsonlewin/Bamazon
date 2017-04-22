@@ -123,8 +123,12 @@ function AddNewProduct(){
   				product_name: productName,
   				department_name: departmentName,
   				price: price,
-  				stock_quantity:stock
+  				stock_quantity:stock,
+  				product_sales : 0
 				}, function(err, res) {
+					if(err){
+						return console.log(err);
+					};
 					console.log("Your product "+ productName + " was successfully added!");
 				});
 		});
