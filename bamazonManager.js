@@ -73,7 +73,7 @@ function addToInventory(){
 		message: "To what item would you like to add more inventory?"
 	}).then(function(answer){
 		var addItem = answer.add;
-		connection.query('SELECT * FROM Products WHERE item_id='+addItem, function(err,res){
+		connection.query('SELECT * FROM products WHERE item_id='+addItem, function(err,res){
 		console.log("id: " + res[0].item_id + ", name: "+ res[0].product_name + ", price: "+ res[0].price + ", quantity: "+res[0].stock_quantity);
 	inquirer.prompt({
 		type:"input",

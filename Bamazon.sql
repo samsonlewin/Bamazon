@@ -55,5 +55,4 @@ ADD product_sales DECIMAL(19,4) NOT NULL;
 SELECT * FROM products;
 SELECT * FROM departments;
 
-DELETE FROM departments; 
 
